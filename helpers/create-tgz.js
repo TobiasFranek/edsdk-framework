@@ -8,6 +8,7 @@ const sourceDirectory = path.resolve(
 const targetDirectory = path.resolve(
     __dirname,  '../..', 'node_packages/@dimensional'
 );
+
 const targetFile = path.resolve(
     targetDirectory, 'napi-canon-cameras.tgz'
 );

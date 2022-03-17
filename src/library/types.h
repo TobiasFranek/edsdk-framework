@@ -5,7 +5,6 @@
 #include <unordered_map>
 #include <napi.h>
 #include <EDSDK.h>
-
 #define kEdsPropID_MyMenu           0x0000000e
 #define kEdsPropID_JpegQuality      0x00000101
 #define kEdsPropID_DepthOfField     0x0000041b
@@ -24,6 +23,7 @@ typedef enum {
     kEdsObjectFormat_HEIF_CODE = 0xB10B
 } EdsObjectFormat;
 
+#define sprintf_s(buf, ...) snprintf((buf), sizeof(buf), __VA_ARGS__)
 
 namespace CameraApi {
 

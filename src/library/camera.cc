@@ -22,7 +22,7 @@ namespace CameraApi {
 
     struct LiveViewEventData {
         CameraReference camera;
-        boolean isActive = false;
+        Boolean isActive = false;
     };
 
     struct PropertyEventData {
@@ -338,7 +338,7 @@ namespace CameraApi {
         return error;
     }
 
-    EdsError __stdcall Camera::handleStateEvent(EdsStateEvent inEvent, EdsUInt32 inEventData, EdsVoid *inContext) {
+    EdsError Camera::handleStateEvent(EdsStateEvent inEvent, EdsUInt32 inEventData, EdsVoid *inContext) {
         auto *c = (Camera *) inContext;
         CameraReference camera = c->shared_from_this();
 
@@ -385,7 +385,7 @@ namespace CameraApi {
         return EDS_ERR_OK;
     }
 
-    EdsError __stdcall Camera::handlePropertyEvent(
+    EdsError Camera::handlePropertyEvent(
         EdsPropertyEvent inEvent, EdsUInt32 inPropertyID, EdsUInt32 inParam, EdsVoid *inContext
     ) {
         auto *c = (Camera *) inContext;
@@ -442,10 +442,10 @@ namespace CameraApi {
         return EDS_ERR_OK;
     }
 
-    EdsError __stdcall Camera::handleObjectEvent(EdsObjectEvent inEvent, EdsBaseRef inRef, EdsVoid *inContext) {
+    EdsError Camera::handleObjectEvent(EdsObjectEvent inEvent, EdsBaseRef inRef, EdsVoid *inContext) {
         auto *c = (Camera *) inContext;
-        CameraReference camera = c->shared_from_this();
 
+        CameraReference camera = c->shared_from_this();
         ObjectEventData *eventDataPtr;
         eventDataPtr = new ObjectEventData;
         eventDataPtr->camera = camera;

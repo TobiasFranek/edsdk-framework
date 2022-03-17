@@ -96,12 +96,12 @@ watchCameras();
 
 The package does not include the Canon EDSDK files. To install the package you will have 
 to build a TGZ.
- 
- 1. Unpack the Canon EDSDK as `EDSDK` subdirectory into `third_party`.
- 2. Run `npm run package`
- 3. Look for `../node_packages/@dimensional/napi-canon-cameras.tgz`
- 4. `cd ../YourProject` (Switch tp your project directory)
- 5. `npm i ../node_packages/@dimensional/napi-canon-cameras.tgz`
+ 1. clone the project repository https://github.com/TobiasFranek/edsdk-test. The project should be cloned alongside this repostiory so run ```cd ..``` first.
+ 2. Unpack the Canon EDSDK and copy the ```EDSDK/Framework``` Folder to ```/third_party/EDSDK/Framework```.
+ 3. Run `npm run package`
+ 4. Look for `../node_packages/@dimensional/napi-canon-cameras.tgz`
+ 5. `cd ../edsdk-test` (Switch to your project directory)
+ 6. `npm i ../node_packages/@dimensional/napi-canon-cameras.tgz`
 
 ### NPM Tasks
 

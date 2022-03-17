@@ -17,8 +17,8 @@
   "scripts": {
     "install": "node-gyp-build",
     "package": "npm run prebuild && node helpers/create-tgz.js",
-    "prebuild": "npm run prebuild:ia32 && npm run prebuild:x64 && npm run build:stubs",
-    "prebuild:x64": "prebuildify --napi --strip --arch x64 --verbose",
+    "prebuild": "npm run prebuild:x64 && npm run build:stubs",
+    "prebuild:x64": "prebuildify --napi --arch x64 --platform darwin --verbose",
     "prebuild:ia32": "prebuildify --napi --strip --arch ia32 --verbose",
     "build:stubs": "npm run _update:stubs && npm run _build:stubs:types && npm run _build:es2015 && npm run _build:esm && npm run _build:umd && npm run _build:umd:min",
     "build:docs": "jsdoc2md --partial helpers/examples.hbs --no-gfm --heading-depth 1 --files stubs/es2015/**/*.js >API.md",
@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "node-addon-api": "^3.2.0",
-    "node-gyp-build": "^4.2.3"
+    "node-gyp-build": "^4.3.0"
   },
   "devDependencies": {
     "@babel/types": "^7.14.2",

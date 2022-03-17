@@ -5,5 +5,9 @@ node_modules/
 prebuilds/
 npm-debug.log
 
-third_party/*
+third_party/EDSDK/Framework
 !third_party/README.md
+
+.DS_Store
+
+.vscode

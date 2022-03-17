@@ -205,7 +205,8 @@ namespace CameraApi {
                 return it.first;
             }
         }
-        throw std::exception("Label does not match any value");
+        std::string error = "Label does not match any value";
+        throw error;
     }
 
     Napi::Value ShutterSpeed::ForLabel(const Napi::CallbackInfo &info) {

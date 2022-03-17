@@ -4,8 +4,6 @@
 namespace CameraApi {
 
     LabelMap OutputDeviceLabels = {
-        {kEdsEvfOutputDevice_MOBILE, "Mobile"},
-        {kEdsEvfOutputDevice_MOBILE2, "Mobile2"},
         {kEdsEvfOutputDevice_PC, "PC"},
         {kEdsEvfOutputDevice_TFT, "TFT"}
     };

@@ -27,8 +27,12 @@ namespace CameraApi {
         terminate();
     }
 
-    void CameraBrowser::triggerEvents() {
-        EdsGetEvent();
+    EdsError CameraBrowser::triggerEvents() {
+      EdsError error = EdsGetEvent();
+      if (error != EDS_ERR_OK) {
+        throw error;
+      }
+      return error;
     }
 
     void CameraBrowser::attachEventEmit(const Napi::Function &emit) {
@@ -258,7 +262,7 @@ namespace CameraApi {
         EdsRelease(edsCameraList);
     }
 
-    EdsError __stdcall CameraBrowser::handleCameraAdded(EdsVoid *inContext) {
+    EdsError CameraBrowser::handleCameraAdded(EdsVoid *inContext) {
         CameraBrowser *browser = ((CameraBrowser *) inContext);
         browser->enumerateCameraList();
 

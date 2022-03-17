@@ -7,13 +7,9 @@
             "target_name": "canon_api",
             'cflags!': [ '-fno-exceptions' ],
             'cflags_cc!': [ '-fno-exceptions' ],
+            'cflags': ['-flat_namespace'],
+            'cflags_cc': ['-flat_namespace'],
             'defines': [ 'NAPI_ENABLE_CPP_EXCEPTIONS' ],
-            'msvs_settings': {
-                'VCCLCompilerTool': {
-                   'ExceptionHandling': 1,
-                   'AdditionalOptions': [ '-std:c++17' ]
-                }
-            },
             "sources": [
                 "./src/library/api-error.cc",
                 "./src/library/api-identifier.cc",
@@ -42,45 +38,30 @@
             ],
             "include_dirs": [
                 "./src",
-                "<(module_root_dir)/third_party/EDSDK/Windows/EDSDK/Header",
+                "<(module_root_dir)/third_party/EDSDK/Header",
                 "<!(node -p \"require('node-addon-api').include_dir\")"
             ],
-            "conditions": [
-                [
-                    "OS==\"win\" and target_arch==\"x64\"",
-                    {
-                        "libraries": [
-                          "../third_party/EDSDK/Windows/EDSDK_64/Library/EDSDK.lib"
-                        ],
-                        "copies": [
-                            {
-                                "destination": "<(PRODUCT_DIR)",
-                                "files": [
-                                    "<(module_root_dir)/third_party/EDSDK/Windows/EDSDK_64/Dll/EDSDK.dll",
-                                    "<(module_root_dir)/third_party/EDSDK/Windows/EDSDK_64/Dll/EdsImage.dll"
-                                ]
-                            }
-                        ]
-                    }
-                ],
-                [
-                    "OS==\"win\" and target_arch==\"ia32\"",
-                    {
-                        "libraries": [
-                          "../third_party/EDSDK/Windows/EDSDK/Library/EDSDK.lib"
-                        ],
-                        "copies": [
-                            {
-                                "destination": "<(PRODUCT_DIR)",
-                                "files": [
-                                    "<(module_root_dir)/third_party/EDSDK/Windows/EDSDK/Dll/EDSDK.dll",
-                                    "<(module_root_dir)/third_party/EDSDK/Windows/EDSDK/Dll/EdsImage.dll"
-                                ]
-                            }
-                        ]
-                    }
-                ]
-           ]
+            'link_settings': {
+              'ldflags': [
+                '-flat_namespace'
+              ],
+              'libraries': [
+                '../third_party/EDSDK/Framework/EDSDK.framework/EDSDK',
+              ],
+            },
+            "copies": [
+                {
+                    "destination": "<(PRODUCT_DIR)",
+                    "files": [
+                        "<(module_root_dir)/third_party/EDSDK/Framework/EDSDK.framework",
+                    ]
+                }
+            ],
+            "xcode_settings": {
+              "GCC_ENABLE_CPP_EXCEPTIONS": "YES",
+              "MACOSX_DEPLOYMENT_TARGET": "12.2",
+              "CLANG_CXX_LANGUAGE_STANDARD": "c++17"
+            },
         }
     ],
 }
