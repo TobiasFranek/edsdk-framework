@@ -7,8 +7,8 @@
             "target_name": "canon_api",
             'cflags!': [ '-fno-exceptions' ],
             'cflags_cc!': [ '-fno-exceptions' ],
-            'cflags': ['-flat_namespace'],
-            'cflags_cc': ['-flat_namespace'],
+            # 'cflags': ['-flat_namespace'],
+            # 'cflags_cc': ['-flat_namespace'],
             'defines': [ 'NAPI_ENABLE_CPP_EXCEPTIONS' ],
             "sources": [
                 "./src/library/api-error.cc",
@@ -39,14 +39,17 @@
             "include_dirs": [
                 "./src",
                 "<(module_root_dir)/third_party/EDSDK/Header",
+                "<(module_root_dir)/third_party/EDSDK/Framework",
                 "<!(node -p \"require('node-addon-api').include_dir\")"
             ],
             'link_settings': {
-              'ldflags': [
-                '-flat_namespace'
-              ],
+              # 'mac_framework_dirs': [
+              #   '../third_party/EDSDK/Framework/',
+              # ],
               'libraries': [
-                '../third_party/EDSDK/Framework/EDSDK.framework/EDSDK',
+                '-Wl,-rpath,./third_party/EDSDK/Framework',
+                '-framework',
+                'EDSDK'
               ],
             },
             "copies": [
@@ -56,6 +59,11 @@
                         "<(module_root_dir)/third_party/EDSDK/Framework/EDSDK.framework",
                     ]
                 }
+            ],
+            'libraries': [
+              '-F../third_party/EDSDK/Framework',
+              '-framework',
+              'EDSDK'
             ],
             "xcode_settings": {
               "GCC_ENABLE_CPP_EXCEPTIONS": "YES",
